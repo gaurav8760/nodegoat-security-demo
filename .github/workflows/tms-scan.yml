@@ -1,0 +1,20 @@
+name: TMS Secret Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  tms-secret-scan:
+    runs-on: ubuntu-latest
+    name: Too Many Secrets Scan
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run TMS Scan
+        uses: Checkmarx/tms-github-action@v1
+        with:
+          path: '.'
